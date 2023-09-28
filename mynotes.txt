@@ -1,0 +1,278 @@
+FROM python:3.9-slim
+
+# Install git
+RUN apt-get update && apt-get install -y git
+
+# Set working directory
+WORKDIR /app
+
+ 
+# Clone the repository
+RUN git clone https://github.com/Alphanum404/personal-web.git .
+
+WORKDIR /bharath
+
+RUN cp -r /app/* /bharath
+COPY app.py .
+# Install dependencies (if required)
+# RUN pip install -r requirements.txt
+
+# Run your Python application
+CMD ["python", "app.py"]
+
+-------------------------------------------------------------------------------
+
+FROM python:3.9-slim
+
+# Set the working directory to /app
+ADD . .
+
+RUN cp -r /car-prediction/* .
+# Copy the requirements file into the container
+#COPY /car-prediction/requirements.txt requirements.txt
+
+# Install the required Python packages
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy the application code into the container
+COPY . .
+
+# Expose the port that the application will run on
+EXPOSE 9000
+
+# Define the command to run your application
+CMD ["python", "app.py"]
+
+--------------------------------------------------------------------------------
+
+FROM python:3.9-slim
+
+RUN apt-get update && apt-get install -y git
+
+# Set the working directory to /app
+
+WORKDIR /bharath
+
+RUN git clone https://github.com/krishnanaidu99/car-prediction.git .
+
+#WORKDIR /kumar
+
+#RUN cp -r /bharath/car-prediction/* /kumar
+
+# Copy the requirements file into the container
+
+#COPY /car-prediction/requirements.txt requirements.txt
+
+
+# Install the required Python packages
+
+RUN pip install --no-cache-dir -r /bharath/requirements.txt
+
+
+EXPOSE 9000
+
+# Copy the application code into the container
+
+#COPY . .
+
+CMD ["python", "/bharath/app.py"]
+
+----------------------------------------------------------------------------------------------
+
+GitHub - krishnanaidu99/car-prediction: mine
+
+mine. Contribute to krishnanaidu99/car-prediction development by creating an account on GitHub.
+
+
+
+
+
+CMD ["python", "app.py"]
+
+
+--------------------------------------------------------------------------------------------
+
+FROM python:3.9-slim
+
+RUN apt-get update && apt-get install -y git
+
+# Set the working directory to /app
+
+WORKDIR /bharath
+
+RUN git clone https://github.com/krishnanaidu99/car-prediction.git .
+
+#WORKDIR /kumar
+
+#RUN cp -r /bharath/car-prediction/* /kumar
+
+# Copy the requirements file into the container
+
+#COPY /car-prediction/requirements.txt requirements.txt
+
+# Install the required Python packages
+
+RUN pip install --no-cache-dir -r /bharath/requirements.txt
+
+EXPOSE 9000
+
+# Copy the application code into the container
+
+#COPY . .
+
+CMD ["python", "/bharath/app.py"]
+
+----------------------------------------------------------
+
+GitHub - krishnanaidu99/car-prediction: mine
+
+mine. Contribute to krishnanaidu99/car-prediction development by creating an account on GitHub.
+
+
+grep name test | awk -F" " '{print $4}'
+
+
+set -x #debug purpose to show which cmds are being executed
+
+set -e #to exit the shell script if any error occurs on the flow
+
+set -o pipefail #whenever u use pipe cmd and execute script if it fails it will exit
+
+
+
+learn encryption stuff in aws ebs encryption 
+
+
+s3 life cycle from glacier to standard general purpose
+
+
+why cant we have memory metrix in cloud watch
+
+
+rds terraform explore chey\
+
+
+instance types
+
+
+docker path change from image to conatiner like port mapping
+
+---------------------------------------------------------------------------------------------
+
+FROM python:3.9-slim as app
+
+RUN apt-get update && apt-get install -y git
+# Set the working directory to /app
+WORKDIR /bharath
+
+RUN git clone https://github.com/krishnanaidu99/car-prediction.git .
+
+RUN pip install --no-cache-dir -r /bharath/requirements.txt
+
+FROM scratch
+
+WORKDIR /bharath
+
+COPY --from=app /bharath /bharath
+
+EXPOSE 9000
+CMD ["python", "/bharath/app.py"]
+
+
+------------------------------------------------------------------
+
+
+FROM python:3.9 as app
+
+
+RUN apt-get update && apt-get install -y git
+# Set the working directory to /app
+WORKDIR /bharath
+
+RUN git clone https://github.com/krishnanaidu99/car-prediction.git .
+
+FROM python:3.9-slim
+
+WORKDIR /bharath
+
+COPY --from=app /bharath /bharath
+
+RUN pip install --no-cache-dir -r /bharath/requirements.txt
+
+EXPOSE 9000
+CMD ["python", "/bharath/app.py"]
+
+--------------------------------------------------
+
+
+docker run -it --name bharath --mount source=myvol,target=/vol --network bridge python:3.9
+
+volumes path can be found under host machine in the path----  /var/lib/docker/volumes/<name of the volume>/_data/<our created paths>
+
+
+docker run -dit --name one -v myvol1:/min python:3.9
+
+
+docker ps --filter "status=running"
+
+
+created,running,restarting,dead,exited
+
+
+-----------------------------------------------------------------------
+
+arn:aws:iam::854391710227:role/crosschecking
+
+[profile javeed]
+
+role_arn = arn:aws:iam::854391710227:role/crosschecking
+
+credential_source = Ec2InstanceMetadata
+
+ -----------------------------------------------------------
+
+aws s3api create-bucket --bucket letsdoit3949 --region ap-south-1 --profile javeed
+
+aws s3api list-objects --bucket bharat1-2023 --profile javeed
+
+aws s3 ls s3://bharat1-2023 --profile javeed
+
+aws configure set region ap-south-1 --profile javeed
+
+
+/home/ec2-user/.aws
+
+
+mkdir ~/.aws/
+
+
+what is subnet group in rds
+
+
+migrate data from s3 to rds
+
+
+how do u use aws xray
+
+
+
+migrate data from s3 to rds
+
+
+u need to use dms service for this
+
+
+
+efs security stuff
+
+
+route 53 records
+
+
+dump maria database data to aws rds maria using 
+
+mysqldump -u <username> -p  <databsenamethatyoucreated> > <givesomename>.sql
+
+after that run
+
+mysql -h <hostname> -p <portnumber> -u <username> -p
