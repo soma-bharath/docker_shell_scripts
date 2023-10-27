@@ -1,7 +1,5 @@
 bb\\
 
-AKIAQFUB5PMSNRXFJM7N
-j3eb3YnwD5cf08YXKrusb617qS3fa/j4vcTkrJlI
 
 subnet-00522a59a053ba38a
 subnet-06362802c3edb19a3
